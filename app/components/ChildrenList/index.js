@@ -6,16 +6,15 @@ import LoadingIndicator from 'components/LoadingIndicator';
 import ChildrenListItem from '../../containers/ChildrenListItem';
 
 function ChildrenList({ loading, children }) {
-    if (loading) {
-        return <List item={children} component={LoadingIndicator} />;
-    }
-    console.log('from cl',children)
-    return <List item={children} component={ChildrenListItem} />;
+  if (loading) {
+    return <List item={children} component={LoadingIndicator} />;
+  }
+  return <List item={children} component={ChildrenListItem} />;
 }
 
 ChildrenList.propTypes = {
-    loading: PropTypes.bool,
-    children: PropTypes.any,
+  loading: PropTypes.bool,
+  children: PropTypes.any,
 };
 
 export default ChildrenList;

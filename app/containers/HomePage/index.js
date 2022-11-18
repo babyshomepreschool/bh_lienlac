@@ -6,26 +6,24 @@
  */
 
 import React, { memo } from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { loadChildren } from '../App/action';
-import messages from './messages';
 import { compose } from 'redux';
-
-
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-
-import reducer from "./reducer"
-import saga from './saga'
 import { createStructuredSelector } from 'reselect';
-import { makeSelectChildren, makeSelectLoading } from '../App/selectors';
 import ChildrenList from 'components/ChildrenList/';
+import { loadChildren } from '../App/action';
+import messages from './messages';
+
+import reducer from './reducer';
+import saga from './saga';
+import { makeSelectChildren, makeSelectLoading } from '../App/selectors';
 import { makeSelectIdChild } from './selectors';
 import { changeIdChild } from './actions';
 
-const key = 'home'
+const key = 'home';
 
 export function HomePage({
   idChild,
@@ -35,10 +33,9 @@ export function HomePage({
   onChangeId,
 }) {
   const childrenProps = {
-    children, 
-    loading
-  }
-  console.log(childrenProps)
+    children,
+    loading,
+  };
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -47,43 +44,48 @@ export function HomePage({
       <h1>
         <FormattedMessage {...messages.header} />
       </h1>
-      <input 
-        name='id'
-        type='text'
-        placeholder='Id...'
-        value={idChild}
-        onChange={onChangeId}
-      />
-      <button onClick={handleClick} className="btn btn-primary">
-        Find
-      </button>
-      <ChildrenList {...childrenProps}/>
+      <form>
+        <input
+          name="id"
+          type="text"
+          placeholder="Id..."
+          value={idChild}
+          onChange={onChangeId}
+        />
+        <input
+          type="submit"
+          onClick={handleClick}
+          className="btn btn-primary"
+          value="Find"
+        />
+      </form>
+      <ChildrenList {...childrenProps} />
     </div>
   );
 }
 
-HomePage.prototype = {
+HomePage.propTypes = {
   idChild: PropTypes.string,
-  chidren: PropTypes.object,
+  children: PropTypes.object,
   loading: PropTypes.bool,
   handleClick: PropTypes.func,
   onChangeId: PropTypes.func,
-}
+};
 
 const mapStateToProps = createStructuredSelector({
   idChild: makeSelectIdChild(),
   children: makeSelectChildren(),
   loading: makeSelectLoading(),
-})
+});
 
 export function mapDispatchToProps(dispatch) {
   return {
     onChangeId: evt => dispatch(changeIdChild(evt.target.value)),
     handleClick: evt => {
-      if(evt.preventDefault) evt.preventDefault();
-      dispatch(loadChildren())
+      if (evt.preventDefault) evt.preventDefault();
+      dispatch(loadChildren());
     },
-  }
+  };
 }
 
 const withConnect = connect(
