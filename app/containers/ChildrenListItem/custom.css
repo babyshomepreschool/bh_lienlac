@@ -1,0 +1,10 @@
+.attendence{
+    background-color: greenyellow;
+    border-radius: 50%;
+}
+
+.absent{
+    background-color: red;
+    border-radius: 50%;
+
+}

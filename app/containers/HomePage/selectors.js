@@ -7,11 +7,11 @@
  
  const selectHome = state => state.home || initialState;
  
- const makeSelectIdChild = () =>
+ const makeSelectUserId = () =>
    createSelector(
      selectHome,
-     homeState => homeState.idChild,
+     homeState => homeState.userId,
    );
  
- export { selectHome, makeSelectIdChild };
+ export { selectHome, makeSelectUserId };
  

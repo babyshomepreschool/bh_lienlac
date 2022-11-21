@@ -21,7 +21,7 @@ export default function App() {
     <div>
       <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/:userId" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

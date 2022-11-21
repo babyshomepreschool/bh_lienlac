@@ -1,8 +1,8 @@
 import { CHANGE_ID } from "./constants";
 
-export function changeIdChild(idChild){
+export function changeUserId(userId){
     return {
         type: CHANGE_ID,
-        idChild
+        userId
     }
 }
