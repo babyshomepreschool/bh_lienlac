@@ -3,8 +3,71 @@
     border-radius: 50%;
 }
 
+.studying{
+    background-color: rgb(86, 179, 255);
+    border-radius: 50%;
+}
+
 .absent{
     background-color: red;
     border-radius: 50%;
 
+}
+
+.note-table{
+    border: 1px solid black;
+    width: 100%;
+    padding: 2px;
+    margin-top: 10px;
+}
+
+.attendence-note{
+    height: 25px;
+    background-color: greenyellow;
+    width: 10%;
+    border-radius: 50%;
+}
+
+.wrap-row{
+    display: flex;
+    margin-left: 5px;
+}
+
+.absent-note{
+    height: 25px;
+    background-color: red;
+    width: 10%;
+    border-radius: 50%;
+}
+
+.studying-note{
+    height: 25px;
+    background-color: rgb(86, 179, 255);
+    width: 10%;
+    border-radius: 50%;
+}
+
+.attendence-note, .absent-note, .studying-note{
+    margin: 2px 10px 0px 0px;
+}
+
+.avatar{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+}
+
+.background{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: block;
+    height: 200px;
+    background-color: rgb(212, 249, 255);
+}
+
+.button-bar{
+    padding: 2px;
+    border: 1px solid black;
+    margin: 1px 1px 1px 1px;    
 }

@@ -1,18 +1,19 @@
-import produce from "immer";
-import {CHANGE_ID} from './constants'
+import produce from 'immer';
+import { CHANGE_ID } from './constants';
 
 export const initialState = {
-    userId: ''
-}
+  userId: '',
+};
 
 const homeReducer = (state = initialState, action) =>
-    produce(state, draf => {
-        switch (action.type) {
-            case CHANGE_ID:
-                draf.userId = action.userId;
-                break;
-            
-        }
-    });
+  produce(state, draft => {
+    switch (action.type) {
+      case CHANGE_ID:
+        draft.userId = action.userId;
+        break;
+      default:
+        break;
+    }
+  });
 
 export default homeReducer;
