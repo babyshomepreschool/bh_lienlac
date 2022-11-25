@@ -35,8 +35,6 @@ export function ChildrenListItem(props) {
 
   const handleClick = () => { };
 
-  console.log(getAlbum())
-
   return (
     <Wrapper style={displayView}>
       <div
