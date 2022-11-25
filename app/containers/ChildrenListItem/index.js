@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Calendar from 'react-calendar';
 import PropTypes from 'prop-types';
-import { FaCalendarAlt, FaInfoCircle, FaMoneyBill } from 'react-icons/fa';
+import { FaCalendarAlt, FaImage, FaInfoCircle, FaMoneyBill } from 'react-icons/fa';
 import Wrapper from './Wrapper';
 import './custom.css';
 
@@ -27,19 +27,25 @@ export function ChildrenListItem(props) {
       dateHistory[new Date(`${array[0]}`)] = array[1];
     });
   }
+
   const displayView = {};
   if (isEmpty(item)) {
     displayView.display = 'none';
   }
 
-  const handleClick = () => {};
+  const handleClick = () => { };
+
+  console.log(getAlbum())
 
   return (
     <Wrapper style={displayView}>
-      <div className="background">
+      <div
+        className="background"
+        style={{ backgroundImage: `url(${avatarURL})` }}
+      >
         <img src={`${avatarURL}`} className="avatar" alt="avatar" />
         <div style={{ fontWeight: 'bold' }}>{item.name}</div>
-        <div style={{ color: item.class }}>Class: {item.class}</div>
+        <div style={{ color: item.class, fontWeight: 'bold' }}>Class: {item.class}</div>
       </div>
 
       <button
@@ -55,7 +61,7 @@ export function ChildrenListItem(props) {
 
       {showProfile && (
         <div className="information">
-          <div>Birthday: {item.birthday}</div>
+          <div>Birthday: {new Date(item.birthday).toLocaleString().split(',')[1]}</div>
           <div>Phone: {item.phone}</div>
           <div>Father name: {item.fatherName}</div>
           <div>Mother name: {item.motherName}</div>
@@ -74,9 +80,9 @@ export function ChildrenListItem(props) {
       </button>
       {showTuition && (
         <div className="information">
-          <div>Total tuition: {item.hocphiTong}</div>
-          <div>Details tuition: {item.hocphiChitiet}</div>
-          <div>Tuition history: {`\n${item.hocphiHistory}`}</div>
+          <div><span style={{ fontWeight: 'bold' }}>Total tuition: </span>{item.hocphiTong}</div>
+          <div><span style={{ fontWeight: 'bold' }}>Details tuition: </span>{item.hocphiChitiet}</div>
+          <div><span style={{ fontWeight: 'bold' }}>Tuition history: </span>{`\n${item.hocphiHistory}`}</div>
         </div>
       )}
 
@@ -125,6 +131,16 @@ export function ChildrenListItem(props) {
           </div>
         </div>
       )}
+
+      <button
+        type="button"
+        style={{ width: '100%' }}
+        className="button-bar"
+        onKeyDown={handleClick}
+      >
+        <FaImage />
+        Album
+      </button>
     </Wrapper>
   );
 }
