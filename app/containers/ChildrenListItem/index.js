@@ -6,11 +6,14 @@ import PropTypes from 'prop-types';
 import { FaCalendarAlt, FaImage, FaInfoCircle, FaMoneyBill } from 'react-icons/fa';
 import Wrapper from './Wrapper';
 import './custom.css';
+import ImagesGallery from '../../components/ImagesGallery';
+import Tuition from '../../components/Tuition';
 
 export function ChildrenListItem(props) {
   const [showProfile, setShowProfile] = useState(false);
   const [showTuition, setShowTuition] = useState(false);
   const [showAttendence, setShowAttendence] = useState(false);
+  const [showAlbum, setShowAlbum] = useState(false);
   const { item } = props;
   const dateHistory = {};
 
@@ -35,6 +38,7 @@ export function ChildrenListItem(props) {
 
   const handleClick = () => { };
 
+
   return (
     <Wrapper style={displayView}>
       <div
@@ -45,7 +49,6 @@ export function ChildrenListItem(props) {
         <div style={{ fontWeight: 'bold' }}>{item.name}</div>
         <div style={{ color: item.class, fontWeight: 'bold' }}>Class: {item.class}</div>
       </div>
-
       <button
         type="button"
         style={{ width: '100%' }}
@@ -54,15 +57,15 @@ export function ChildrenListItem(props) {
         onKeyDown={handleClick}
       >
         <FaInfoCircle />
-        Profile
+        Thông tin
       </button>
 
       {showProfile && (
         <div className="information">
-          <div>Birthday: {new Date(item.birthday).toLocaleString().split(',')[1]}</div>
-          <div>Phone: {item.phone}</div>
-          <div>Father name: {item.fatherName}</div>
-          <div>Mother name: {item.motherName}</div>
+          <div>Sinh Nhật: {new Date(item.birthday).toLocaleString().split(',')[1]}</div>
+          <div>Số điện thoại: {item.phone}</div>
+          <div>Tên Bố: {item.fatherName}</div>
+          <div>Tên Mẹ: {item.motherName}</div>
         </div>
       )}
 
@@ -74,15 +77,12 @@ export function ChildrenListItem(props) {
         onKeyDown={handleClick}
       >
         <FaMoneyBill />
-        Tuition
+        Học phí
       </button>
-      {showTuition && (
-        <div className="information">
-          <div><span style={{ fontWeight: 'bold' }}>Total tuition: </span>{item.hocphiTong}</div>
-          <div><span style={{ fontWeight: 'bold' }}>Details tuition: </span>{item.hocphiChitiet}</div>
-          <div><span style={{ fontWeight: 'bold' }}>Tuition history: </span>{`\n${item.hocphiHistory}`}</div>
-        </div>
-      )}
+      {showTuition && 
+      <Tuition 
+        {...item}
+      />}
 
       <button
         type="button"
@@ -92,13 +92,14 @@ export function ChildrenListItem(props) {
         onKeyDown={handleClick}
       >
         <FaCalendarAlt />
-        Attendence
+        Điểm danh
       </button>
       {showAttendence && (
         <div>
           <span style={{ fontWeight: 'bold' }}>Attendence History:</span>
 
           <Calendar
+            // showNeighboringMonth={false}
             tileClassName={({ date }) => {
               switch (dateHistory[date]) {
                 case 'Đã về':
@@ -135,10 +136,16 @@ export function ChildrenListItem(props) {
         style={{ width: '100%' }}
         className="button-bar"
         onKeyDown={handleClick}
+        onClick={() => setShowAlbum(!showAlbum)}
       >
         <FaImage />
-        Album
+        Album ảnh
       </button>
+      {
+        showAlbum && <ImagesGallery
+          albumURL={item.album}
+        />
+      }
     </Wrapper>
   );
 }
