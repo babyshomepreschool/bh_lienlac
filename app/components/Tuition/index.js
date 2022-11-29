@@ -1,23 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Tuition = ({ hocphiTong, hocphiChitiet, hocphiHistory }) => {
-    const [showTuition, setShowTuition] = useState(getInitialData())
+function Tuition({ hocphiTong, hocphiChitiet, hocphiHistory }) {
+    const [showTuition, setShowTuition] = useState({})
     let tuitions = []
-    var initialVisibleTuition = {}
     if (hocphiHistory) {
         tuitions = hocphiHistory.split('"2022/')
     }
 
-    function getInitialData() {
+    useEffect(() => {
+        var initialVisibleTuition = {}
+
         if (tuitions) {
             tuitions.map((tuition, index) => {
                 initialVisibleTuition['tuition' + index] = false
             })
         }
-        return initialVisibleTuition
-    }
-
-    console.log(showTuition)
+        setShowTuition(initialVisibleTuition)
+    }, [setShowTuition])
 
     return (
         <div>

@@ -1,18 +1,15 @@
-import React, { Children } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "react-image-gallery/styles/css/image-gallery.css";
-import ImageGallery from "react-image-gallery";
 import PropTypes from 'prop-types';
 
 
-const ImagesGallery = ({ albumURL }) => {
-    const [images, setImages] = React.useState(null);
+function ImagesGallery({ albumURL }){
+    const [images, setImages] = useState(null);
     const getAlbumId = (URL) => {
         return URL ? URL.split('gl/')[1] : null
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         let shouldCancel = false;
         const call = async () => {
             let id = getAlbumId(albumURL)
