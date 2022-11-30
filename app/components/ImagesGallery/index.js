@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import { MDBCardImage, MDBCol } from 'mdb-react-ui-kit';
 
 function ImagesGallery({ albumURL }) {
   const [images, setImages] = useState(null);
@@ -15,10 +16,20 @@ function ImagesGallery({ albumURL }) {
       );
       if (!shouldCancel && response.data && response.data.length > 0) {
         setImages(
-          response.data.map(url => ({
-            original: `${url}=w1024`,
-            thumbnail: `${url}=s100-c`,
-          })),
+          [
+            {
+              original: `${response.data[0]}=w1024`,
+              thumbnail: `${response.data[0]}=s1024-c`,
+            },
+            {
+              original: `${response.data[1]}=w1024`,
+              thumbnail: `${response.data[1]}=s1024-c`,
+            },
+            {
+              original: `${response.data[2]}=w1024`,
+              thumbnail: `${response.data[2]}=s1024-c`,
+            },
+          ]
         );
       }
     };
@@ -27,16 +38,14 @@ function ImagesGallery({ albumURL }) {
   }, []);
   if (images) {
     return (
-      <div>
+      <>
         {images.map(image => (
-          <img
-            key={image.original}
-            src={image.thumbnail}
-            alt=""
-            referrerPolicy="false"
-          />
+          <MDBCol className="mb-2" key={image.original}>
+            <MDBCardImage src={image.thumbnail}
+              alt="image 1" className="w-100 rounded-3" referrerPolicy='false'/>
+          </MDBCol>
         ))}
-      </div>
+      </>
     );
   }
   return null;

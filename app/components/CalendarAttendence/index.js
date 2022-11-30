@@ -7,8 +7,8 @@ function CalendarAttendence({ diemdanhHistory }) {
   const [studiedDay, setStudiedDay] = useState(0);
   let abc = 0;
   useEffect(() => {
-    setDayOff(abc);
-  }, [setDayOff, abc]);
+    setStudiedDay(abc);
+  }, [setStudiedDay, abc]);
   const dateHistory = {};
   if (diemdanhHistory) {
     diemdanhHistory.split('\n').forEach(element => {

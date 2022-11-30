@@ -5,7 +5,7 @@ const Wrapper = styled.div`
   height: 100%;
   display: block;
   align-items: space-between;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
 `;
 
 export default Wrapper;
