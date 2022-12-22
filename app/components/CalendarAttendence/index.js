@@ -5,17 +5,36 @@ import PropTypes from 'prop-types';
 function CalendarAttendence({ diemdanhHistory }) {
   const [dayOff, setDayOff] = useState(0);
   const [studiedDay, setStudiedDay] = useState(0);
-  let abc = 0;
-  useEffect(() => {
-    setStudiedDay(abc);
-  }, [setStudiedDay, abc]);
+
   const dateHistory = {};
+
   if (diemdanhHistory) {
     diemdanhHistory.split('\n').forEach(element => {
       const array = element.split(',');
       dateHistory[new Date(`${array[0]}`)] = array[1];
     });
   }
+
+  useEffect(() => {
+    var studiedD = 0
+    var dayO = 0
+    for (let day = 1; day <= 31; day++) {
+      switch (dateHistory[new Date(2022, new Date().getMonth(), day)]) {
+        case 'Đã về':
+        case 'Đi học':
+          studiedD++
+          break;
+        case 'Nghỉ có phép trừ ăn':
+          dayO++
+          break;
+        default:
+          break;
+      }
+    }
+    setStudiedDay(studiedD)
+    setDayOff(dayO)
+  }, [])
+
   return (
     <>
       <div>
@@ -33,7 +52,6 @@ function CalendarAttendence({ diemdanhHistory }) {
           tileClassName={({ date }) => {
             switch (dateHistory[date]) {
               case 'Đã về':
-                abc += 1;
                 return 'attendence';
               case 'Đi học':
                 return 'studying';
@@ -44,9 +62,24 @@ function CalendarAttendence({ diemdanhHistory }) {
             }
           }}
           tileDisabled={({ date }) => date.getDay() === 0}
-          onViewChange={() => {
-            setDayOff(abc);
-            abc = 0;
+          onActiveStartDateChange={({ activeStartDate }) => {
+            var studiedD = 0
+            var dayO = 0
+            for (let day = 1; day <= 31; day++) {
+              switch (dateHistory[new Date(2022, activeStartDate.getMonth(), day)]) {
+                case 'Đã về':
+                case 'Đi học':
+                  studiedD++
+                  break;
+                case 'Nghỉ có phép trừ ăn':
+                  dayO++
+                  break;
+                default:
+                  break;
+              }
+            }
+            setStudiedDay(studiedD)
+            setDayOff(dayO)
           }}
         />
         <div className="note-table">
