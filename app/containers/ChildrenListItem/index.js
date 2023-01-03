@@ -54,15 +54,15 @@ export function ChildrenListItem(props) {
                   <div className="mb-5">
                     <p className="lead fw-normal mb-1">About</p>
                     <div className="p-4" style={{ backgroundColor: '#f8f9fa', whiteSpace: 'nowrap', fontSize: 'small' }}>
-                      <MDBCardText className="font-italic mb-1">
+                      <MDBCardText className="text1 mb-1">
                         Sinh Nhật: {new Date(item.birthday).toLocaleString().split(',')[1]}
                       </MDBCardText>
-                      <MDBCardText className="font-italic mb-1">Số điện thoại: {item.phone}
+                      <MDBCardText className="text1 mb-1">Số điện thoại: {item.phone}
                       </MDBCardText>
-                      <MDBCardText className="font-italic mb-0">
+                      <MDBCardText className="text1 mb-0">
                         Tên Bố: {item.fatherName}
                       </MDBCardText>
-                      <MDBCardText className="font-italic mb-0">
+                      <MDBCardText className="text1 mb-0">
                         Tên Mẹ: {item.motherName}
                       </MDBCardText>
                     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar } from 'react-calendar';
 import PropTypes from 'prop-types';
+import dayjs from 'dayjs';
 
 function CalendarAttendence({ diemdanhHistory }) {
   const [dayOff, setDayOff] = useState(0);
@@ -61,6 +62,7 @@ function CalendarAttendence({ diemdanhHistory }) {
                 return '';
             }
           }}
+          formatMonthYear={(locale, date) => dayjs(date).format("MM-YYYY")}
           tileDisabled={({ date }) => date.getDay() === 0}
           onActiveStartDateChange={({ activeStartDate }) => {
             var studiedD = 0
