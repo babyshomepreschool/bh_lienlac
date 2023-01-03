@@ -19,7 +19,7 @@ function CalendarAttendence({ diemdanhHistory }) {
     var studiedD = 0
     var dayO = 0
     for (let day = 1; day <= 31; day++) {
-      switch (dateHistory[new Date(2022, new Date().getMonth(), day)]) {
+      switch (dateHistory[new Date(new Date().getFullYear(), new Date().getMonth(), day)]) {
         case 'Đã về':
         case 'Đi học':
           studiedD++
@@ -65,8 +65,9 @@ function CalendarAttendence({ diemdanhHistory }) {
           onActiveStartDateChange={({ activeStartDate }) => {
             var studiedD = 0
             var dayO = 0
+            console.log(activeStartDate)
             for (let day = 1; day <= 31; day++) {
-              switch (dateHistory[new Date(2022, activeStartDate.getMonth(), day)]) {
+              switch (dateHistory[new Date(activeStartDate.getFullYear(), activeStartDate.getMonth(), day)]) {
                 case 'Đã về':
                 case 'Đi học':
                   studiedD++

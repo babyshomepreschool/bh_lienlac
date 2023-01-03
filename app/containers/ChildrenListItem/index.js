@@ -1,14 +1,7 @@
 import { isEmpty } from 'lodash';
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {
-  FaCalendarAlt,
-  FaImage,
-  FaInfoCircle,
-  FaMoneyBill,
-} from 'react-icons/fa';
-import Wrapper from './Wrapper';
 import './custom.css';
 import ImagesGallery from '../../components/ImagesGallery';
 import Tuition from '../../components/Tuition';
@@ -17,10 +10,6 @@ import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCar
 
 
 export function ChildrenListItem(props) {
-  const [showProfile, setShowProfile] = useState(false);
-  const [showTuition, setShowTuition] = useState(false);
-  const [showAttendence, setShowAttendence] = useState(false);
-  const [showAlbum, setShowAlbum] = useState(false);
   const { item } = props;
 
   let avatarURL = '';
